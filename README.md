@@ -1,173 +1,266 @@
-# ✨ Lumi — Your AI Study Buddy
 
-Lumi is a calming, pastel-themed AI chatbot built with React + FastAPI + Google Gemini. Ask questions, get simple explanations, summaries, quizzes, and more.
+# 🍀 Clover — Your AI Study Buddy
 
-![Lumi Logo](frontend/public/lumi-logo.png)
+**Learn smarter. Understand better. Grow every day.**
 
----
+Clover is an AI-powered study companion designed to make learning simpler, more interactive, and accessible. It helps students explore concepts, summarize information, brainstorm ideas, and learn through conversational AI — all within a clean, calming interface.
 
-## 🛠 Tech Stack
-
-| Layer | Technologies |
-|-------|-------------|
-| Frontend | React 19, TypeScript, Vite, Tailwind CSS v4, Lucide Icons |
-| Backend | Python 3.11+, FastAPI, Google Gemini API (`google-genai`) |
-| Database | SQLite (WAL mode) |
+Built with a modern web stack and powered by Google's Gemini API, Clover combines an intuitive chat experience with customizable AI provider configuration.
 
 ---
 
-## 📦 Prerequisites
+## ✨ Features
 
-- **Node.js** 18+ — [nodejs.org](https://nodejs.org)
-- **Python** 3.11+ — [python.org](https://python.org)
-- **Google Gemini API Key** — [aistudio.google.com](https://aistudio.google.com/app/apikey)
+- **AI-Powered Conversations** — Ask questions, explore topics, and receive contextual AI responses.
+- **Simplified Explanations** — Break complex concepts into easy-to-understand language.
+- **Smart Summarization** — Condense lengthy information into concise summaries.
+- **Creative Brainstorming** — Generate ideas, writing prompts, and project inspiration.
+- **Interactive Study Shortcuts** — Quick actions such as Explain Simply, Summarize, and Generate Quiz.
+- **Conversation Management** — Start new chats and revisit recent conversations.
+- **Bring Your Own API Key** — Connect your personal AI provider credentials through Provider Settings.
+- **Provider Configuration** — Select supported providers and models and test connectivity.
+- **Responsive Interface** — A minimal, pastel-inspired interface designed for focused learning.
+- **Error Handling** — Helpful feedback for connection issues, unavailable models, and API failures.
 
----
+*Feature availability depends on the current application configuration and selected provider.*
 
-## 🚀 Installation & Setup (Windows)
+## 🎨 Design Philosophy
 
-### 1. Clone / Download the project
+Clover's visual identity represents growth, clarity, curiosity, and the joy of learning.
 
-```powershell
-cd C:\path\to\LUMI
+- **Brand identity:** Four-leaf clover-inspired logo
+- **Primary colors:** Sage green, mint, leafy green, and warm cream
+- **Interface:** Minimal, welcoming, and distraction-conscious
+- **Experience:** Designed to make AI-assisted learning approachable and intuitive
+
+## 🛠️ Technology Stack
+
+| Layer | Technology |
+|---|---|
+| Frontend | React, TypeScript, Vite |
+| Styling | Tailwind CSS |
+| Backend | Python, FastAPI |
+| AI Integration | Google Gemini API |
+| Dependency Management | npm, pip |
+| Configuration | Environment variables, python-dotenv |
+| API Documentation | FastAPI / Swagger UI |
+
+## 🏗️ Architecture
+
+```text
+              ┌─────────────────────────┐
+              │     Clover Frontend     │
+              │   React + TypeScript    │
+              │                         │
+              │  Chat · History · UI    │
+              └────────────┬────────────┘
+                           │ HTTP requests
+                           ▼
+              ┌─────────────────────────┐
+              │     FastAPI Backend     │
+              │                         │
+              │  Request Handling       │
+              │  Provider Configuration │
+              │  Error Handling         │
+              └────────────┬────────────┘
+                           │ Authenticated API request
+                           ▼
+              ┌─────────────────────────┐
+              │     Google Gemini API   │
+              │                         │
+              │  AI-Generated Responses │
+              └─────────────────────────┘
 ```
 
-### 2. Set up the Backend
+The frontend manages user interactions, while the backend handles requests to the configured AI provider. Provider credentials must not be embedded in frontend source code.
+
+## 📋 Prerequisites
+
+Before running Clover locally, install:
+
+- [Python](https://www.python.org/downloads/)
+- [Node.js and npm](https://nodejs.org/)
+- A Gemini API key from [Google AI Studio](https://aistudio.google.com/apikey)
+- Git (optional, for cloning the repository)
+
+Use a Python version compatible with the project's dependencies.
+
+## ⚙️ Installation and Setup
+
+### 1. Clone the repository
+
+```bash
+git clone <YOUR_REPOSITORY_URL>
+cd Clover
+```
+
+Replace `<YOUR_REPOSITORY_URL>` with your actual repository URL. If you already have the project downloaded, open its root directory instead.
+
+### 2. Set up the backend
+
+Open a terminal and navigate to the backend directory:
 
 ```powershell
-# Navigate to backend
 cd backend
+```
 
-# Create a virtual environment
+Create a Python virtual environment:
+
+```powershell
 python -m venv .venv
+```
 
-# Activate it
-.venv\Scripts\activate
+Activate the environment on Windows PowerShell:
 
-# Install dependencies
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+Install the dependencies:
+
+```powershell
+python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-### 3. Configure API Key
+### 3. Configure environment variables
+
+Create a `.env` file inside the `backend` directory. If `.env.example` exists, use it as your template.
+
+```env
+GEMINI_API_KEY=your_gemini_api_key
+GEMINI_MODEL=your_supported_gemini_model
+```
+
+Replace the placeholders with your own credentials and a model identifier supported by your Gemini API access.
+
+**Security note:** Never commit `.env` files or API keys to GitHub. Ensure `.env` is included in `.gitignore`.
+
+### 4. Start the backend server
+
+From the `backend` directory, run:
 
 ```powershell
-# Copy the example .env file
-copy .env.example .env
-
-# Open and edit .env — add your Gemini API key
-notepad .env
+python -m uvicorn main:app --reload
 ```
 
-Your `backend/.env` should look like:
+This command assumes the FastAPI application is exposed as `app` in `main.py`. Adjust the module path if your project uses a different entry point.
 
-```
-GEMINI_API_KEY=AIza...your_key_here
-GEMINI_MODEL=gemini-2.0-flash
-```
+The backend will typically be available at:
 
-### 4. Set up the Frontend
+- **API:** http://127.0.0.1:8000
+- **Interactive API documentation:** http://127.0.0.1:8000/docs
+
+Keep the backend terminal running.
+
+### 5. Set up the frontend
+
+Open a second terminal and navigate to the frontend directory:
 
 ```powershell
-# Open a new terminal window and navigate to frontend
-cd C:\path\to\LUMI\frontend
+cd frontend
+```
 
-# Install dependencies
+Install the dependencies:
+
+```powershell
 npm install
 ```
 
----
-
-## ▶️ Running the Application
-
-You need **two terminal windows** running simultaneously.
-
-### Terminal 1 — Backend
+Start the development server:
 
 ```powershell
-cd C:\path\to\LUMI\backend
-.venv\Scripts\activate
-uvicorn main:app --reload --port 8000
-```
-
-### Terminal 2 — Frontend
-
-```powershell
-cd C:\path\to\LUMI\frontend
 npm run dev
 ```
 
-Open your browser at **http://localhost:5173** 🎉
+Open the local URL displayed by Vite, usually:
+
+http://localhost:5173
+
+Keep both the frontend and backend running while using Clover locally.
+
+## 🔑 AI Provider Configuration
+
+Clover provides an interface for configuring supported AI providers.
+
+To connect Google Gemini:
+
+1. Generate an API key through [Google AI Studio](https://aistudio.google.com/apikey).
+2. Open Clover's **Provider Settings**.
+3. Select Google Gemini.
+4. Enter your API key.
+5. Select a supported model and test the connection.
+6. Save the configuration once the test succeeds.
+
+Model availability, usage limits, and billing depend on your provider account.
+
+A successful connection test confirms connectivity at that moment; it does not guarantee uninterrupted service or a specific response speed.
+
+## 🔒 Security and Privacy
+
+- Keep API keys on the backend; never expose them in frontend code.
+- Never commit `.env` files, credentials, or other secrets.
+- Use HTTPS in production.
+- Avoid logging API keys or sensitive conversation content.
+- Apply authentication, rate limiting, and session isolation for multi-user deployments.
+- Review the provider's privacy and data-handling policies before submitting sensitive information.
+
+Production deployments require appropriate credential storage and access controls. Local prototype configuration should not be assumed to provide production-grade security.
+
+## 🧪 Troubleshooting
+
+| Issue | Suggested action |
+|---|---|
+| Virtual environment creation fails | Close processes using `.venv`, remove the incomplete environment, and recreate it. |
+| Dependencies fail to install | Check your Python version and install from `requirements.txt`. |
+| Backend fails to start | Verify the application entry point and inspect terminal errors. |
+| Frontend cannot reach the backend | Check that both servers are running and verify API URL and CORS settings. |
+| API key is rejected | Verify the key, provider access, and configuration. |
+| Model is unavailable | Choose a model supported by your provider account. |
+| Requests time out | Check network connectivity, provider availability, quotas, and timeout handling. |
+| API returns 429 or 503 | Check rate limits or temporary provider availability and retry appropriately. |
+
+Redact credentials before sharing logs or screenshots when troubleshooting.
+
+## 🗺️ Future Enhancements
+
+Potential future improvements include:
+
+- Streaming AI responses
+- Interactive quizzes and practice sessions
+- Study-document ingestion and retrieval-augmented generation (RAG)
+- Improved conversation search and organization
+- Additional AI provider integrations
+- Accessibility and responsive design enhancements
+- Automated testing and production deployment workflows
+
+These are proposed enhancements and may not be implemented in the current version.
+
+## 🤝 Contributing
+
+Contributions, bug reports, and suggestions are welcome.
+
+1. Fork the repository.
+2. Create a feature branch.
+3. Implement and test your changes.
+4. Submit a pull request describing your changes.
+
+Please do not commit credentials, environment files, or sensitive information.
+
+## 📄 License
+
+A license has not yet been specified. Add a `LICENSE` file and update this section once the project's licensing terms have been decided.
+
+## 👩‍💻 Acknowledgements
+
+Clover is built with open-source technologies and Google's Gemini API.
 
 ---
 
-## 🧪 Running Tests
+<div align="center">
 
-```powershell
-cd C:\path\to\LUMI\backend
-.venv\Scripts\activate
-pytest tests/ -v
-```
+**Clover — Your AI Study Buddy** 🍀
 
----
+*An AI-powered companion for curiosity, learning, and growth.*
 
-## 🎨 Features
-
-- **💬 Multi-turn conversations** — Lumi remembers context within each chat
-- **📚 Study shortcuts** — Explain Simply, Summarize, Generate Quiz
-- **📄 Document Q&A** — Upload PDF or TXT files and ask questions about them
-- **🗂 Persistent chats** — Conversations survive page refreshes (SQLite)
-- **✨ Loading splash** — Animated splash screen on first load
-- **🌙 Responsive layout** — Works on desktop and mobile
-- **🔒 Secure** — API keys stay in backend `.env`, never sent to frontend
-
----
-
-## 📁 Project Structure
-
-```
-LUMI/
-├── frontend/                 # React + Vite + Tailwind
-│   ├── public/
-│   │   └── lumi-logo.png    # Lumi brand logo
-│   └── src/
-│       ├── components/      # UI components
-│       ├── hooks/           # React hooks
-│       ├── api.ts           # API client
-│       ├── types.ts         # TypeScript types
-│       └── App.tsx          # Root component
-├── backend/                 # FastAPI + SQLite
-│   ├── main.py              # API routes
-│   ├── database.py          # SQLite layer
-│   ├── gemini_service.py    # Gemini AI integration
-│   ├── document_parser.py   # PDF/TXT parsing
-│   ├── requirements.txt     # Python deps
-│   ├── .env.example         # Config template
-│   └── tests/
-│       └── test_api.py      # Automated tests
-├── .gitignore
-└── README.md
-```
-
----
-
-## ⚠️ Troubleshooting
-
-| Issue | Solution |
-|-------|----------|
-| `401 Unauthorized` | Check `GEMINI_API_KEY` in `backend/.env` |
-| `429 Quota exceeded` | Wait for quota reset or upgrade Gemini plan |
-| Frontend can't reach backend | Ensure backend is running on port 8000 |
-| `Module not found` errors | Re-run `pip install -r requirements.txt` |
-| PDF parsing fails | Install `pypdf`: `pip install pypdf` |
-
----
-
-## 🔑 Getting a Gemini API Key
-
-1. Go to [aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
-2. Sign in with your Google account
-3. Click **Create API Key**
-4. Copy the key and paste it in `backend/.env`
-
-The free tier supports up to 15 RPM and 1M tokens/day.
-"# Clover" 
+</div>
