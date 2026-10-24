@@ -59,16 +59,16 @@ export const MessageComposer: React.FC<Props> = ({ onSend, loading }) => {
   };
 
   const shortcuts = [
-    { id: 'explain' as const, label: 'Explain Simply', icon: Lightbulb, color: '#F8E8DD', border: '#e8b48a' },
-    { id: 'summarize' as const, label: 'Summarize', icon: BookOpen, color: '#E6EFE5', border: '#8ab88a' },
-    { id: 'quiz' as const, label: 'Generate Quiz', icon: HelpCircle, color: '#E7EFF9', border: '#8aaae8' },
+    { id: 'explain' as const, label: 'Explain Simply', icon: Lightbulb, color: '#E7F0D5', border: '#A8C686' },
+    { id: 'summarize' as const, label: 'Summarize', icon: BookOpen, color: '#F1F3E5', border: '#DFE7D7' },
+    { id: 'quiz' as const, label: 'Generate Quiz', icon: HelpCircle, color: '#E7F0D5', border: '#638653' },
   ];
 
   return (
     <div style={{
       padding: '12px 20px 20px',
       backgroundColor: 'var(--cream)',
-      borderTop: '1px solid rgba(0,0,0,0.05)',
+      borderTop: '1px solid var(--border-sage)',
     }}>
       {/* Shortcut buttons */}
       <div style={{ display: 'flex', gap: 8, marginBottom: 10, flexWrap: 'wrap' }}>
@@ -86,18 +86,18 @@ export const MessageComposer: React.FC<Props> = ({ onSend, loading }) => {
                 gap: 6,
                 padding: '6px 12px',
                 borderRadius: 20,
-                border: `1.5px solid ${active ? s.border : 'rgba(0,0,0,0.1)'}`,
-                backgroundColor: active ? s.color : 'rgba(255,255,255,0.7)',
-                color: active ? 'var(--dark)' : 'rgba(57,52,67,0.55)',
+                border: `1.5px solid ${active ? s.border : 'var(--border-sage)'}`,
+                backgroundColor: active ? s.color : 'rgba(255,254,250,0.85)',
+                color: active ? 'var(--forest-green)' : 'rgba(53,83,66,0.7)',
                 fontSize: '0.78rem',
-                fontWeight: active ? 600 : 400,
+                fontWeight: active ? 600 : 500,
                 cursor: 'pointer',
                 transition: 'all 0.15s',
               }}
               onMouseEnter={e => { if (!active) e.currentTarget.style.backgroundColor = s.color; }}
-              onMouseLeave={e => { if (!active) e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.7)'; }}
+              onMouseLeave={e => { if (!active) e.currentTarget.style.backgroundColor = 'rgba(255,254,250,0.85)'; }}
             >
-              <Icon size={13} />
+              <Icon size={13} color="var(--forest-green)" />
               {s.label}
             </button>
           );
@@ -112,17 +112,18 @@ export const MessageComposer: React.FC<Props> = ({ onSend, loading }) => {
           gap: 6,
           padding: '4px 10px',
           borderRadius: 20,
-          backgroundColor: 'var(--lavender)',
+          backgroundColor: 'var(--soft-mint)',
           fontSize: '0.78rem',
-          color: '#9B7FD4',
+          color: 'var(--forest-green)',
           marginBottom: 8,
           fontWeight: 500,
+          border: '1px solid var(--border-sage)',
         }}>
           <Paperclip size={12} />
           {docName}
           <button
             onClick={() => { setDocContent(null); setDocName(null); }}
-            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, color: '#9B7FD4', display: 'flex' }}
+            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, color: 'var(--forest-green)', display: 'flex' }}
           >
             <X size={12} />
           </button>
@@ -134,15 +135,15 @@ export const MessageComposer: React.FC<Props> = ({ onSend, loading }) => {
         display: 'flex',
         alignItems: 'flex-end',
         gap: 10,
-        backgroundColor: 'white',
+        backgroundColor: 'var(--surface-white)',
         borderRadius: 20,
-        border: '1.5px solid rgba(155,127,212,0.25)',
+        border: '1.5px solid var(--border-sage)',
         padding: '10px 14px',
-        boxShadow: '0 4px 20px rgba(0,0,0,0.06)',
+        boxShadow: '0 4px 20px rgba(53,83,66,0.06)',
         transition: 'border-color 0.2s',
       }}
-        onFocusCapture={e => (e.currentTarget.style.borderColor = 'rgba(155,127,212,0.6)')}
-        onBlurCapture={e => (e.currentTarget.style.borderColor = 'rgba(155,127,212,0.25)')}
+        onFocusCapture={e => (e.currentTarget.style.borderColor = 'var(--leaf-green)')}
+        onBlurCapture={e => (e.currentTarget.style.borderColor = 'var(--border-sage)')}
       >
         {/* File upload */}
         <input
@@ -162,12 +163,12 @@ export const MessageComposer: React.FC<Props> = ({ onSend, loading }) => {
             border: 'none',
             cursor: uploadingDoc ? 'wait' : 'pointer',
             padding: 4,
-            color: 'rgba(57,52,67,0.3)',
+            color: 'rgba(53,83,66,0.4)',
             display: 'flex',
             transition: 'color 0.15s',
           }}
-          onMouseEnter={e => (e.currentTarget.style.color = '#9B7FD4')}
-          onMouseLeave={e => (e.currentTarget.style.color = 'rgba(57,52,67,0.3)')}
+          onMouseEnter={e => (e.currentTarget.style.color = 'var(--leaf-green)')}
+          onMouseLeave={e => (e.currentTarget.style.color = 'rgba(53,83,66,0.4)')}
         >
           <Paperclip size={18} />
         </button>
@@ -183,7 +184,7 @@ export const MessageComposer: React.FC<Props> = ({ onSend, loading }) => {
             activeShortcut === 'explain' ? 'What should I explain simply?'
             : activeShortcut === 'summarize' ? 'What should I summarize?'
             : activeShortcut === 'quiz' ? 'What topic should I quiz you on?'
-            : 'Ask Lumi anything...'
+            : 'Ask Clover anything...'
           }
           rows={1}
           style={{
@@ -192,7 +193,7 @@ export const MessageComposer: React.FC<Props> = ({ onSend, loading }) => {
             border: 'none',
             outline: 'none',
             fontSize: '0.9rem',
-            color: 'var(--dark)',
+            color: 'var(--forest-green)',
             backgroundColor: 'transparent',
             lineHeight: 1.5,
             fontFamily: 'inherit',
@@ -209,15 +210,15 @@ export const MessageComposer: React.FC<Props> = ({ onSend, loading }) => {
             height: 36,
             borderRadius: '50%',
             border: 'none',
-            backgroundColor: !text.trim() || loading ? 'rgba(155,127,212,0.25)' : '#9B7FD4',
-            color: !text.trim() || loading ? 'rgba(155,127,212,0.5)' : 'white',
+            backgroundColor: !text.trim() || loading ? 'rgba(99,134,83,0.2)' : 'var(--leaf-green)',
+            color: !text.trim() || loading ? 'rgba(53,83,66,0.4)' : 'white',
             cursor: !text.trim() || loading ? 'default' : 'pointer',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             flexShrink: 0,
             transition: 'all 0.2s',
-            boxShadow: !text.trim() || loading ? 'none' : '0 4px 12px rgba(155,127,212,0.4)',
+            boxShadow: !text.trim() || loading ? 'none' : '0 4px 12px rgba(99,134,83,0.35)',
           }}
           aria-label="Send message"
         >
@@ -231,7 +232,7 @@ export const MessageComposer: React.FC<Props> = ({ onSend, loading }) => {
                     width: 5,
                     height: 5,
                     borderRadius: '50%',
-                    backgroundColor: 'rgba(155,127,212,0.7)',
+                    backgroundColor: 'var(--leaf-green)',
                     display: 'inline-block',
                   }}
                 />
@@ -243,8 +244,8 @@ export const MessageComposer: React.FC<Props> = ({ onSend, loading }) => {
         </button>
       </div>
 
-      <p style={{ fontSize: '0.68rem', color: 'rgba(57,52,67,0.3)', textAlign: 'center', marginTop: 8 }}>
-        Lumi can make mistakes. Always verify important info. ✨
+      <p style={{ fontSize: '0.68rem', color: 'rgba(53,83,66,0.45)', textAlign: 'center', marginTop: 8 }}>
+        Clover can make mistakes. Always verify important info. 🍀
       </p>
     </div>
   );

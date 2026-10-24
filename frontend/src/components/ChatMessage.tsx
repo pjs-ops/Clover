@@ -27,8 +27,8 @@ export const ChatMessage: React.FC<Props> = ({ message, onRetry, loading }) => {
       {/* Avatar for assistant */}
       {!isUser && (
         <img
-          src="/lumi-logo.png"
-          alt="Lumi"
+          src="/clover-icon.png"
+          alt="Clover"
           style={{
             width: 32,
             height: 32,
@@ -36,7 +36,8 @@ export const ChatMessage: React.FC<Props> = ({ message, onRetry, loading }) => {
             objectFit: 'cover',
             flexShrink: 0,
             marginTop: 2,
-            boxShadow: '0 2px 8px rgba(155,127,212,0.25)',
+            border: '1px solid var(--border-sage)',
+            boxShadow: '0 2px 8px rgba(99,134,83,0.2)',
           }}
         />
       )}
@@ -47,12 +48,12 @@ export const ChatMessage: React.FC<Props> = ({ message, onRetry, loading }) => {
           maxWidth: 'min(560px, 78%)',
           padding: '12px 16px',
           borderRadius: isUser ? '20px 20px 6px 20px' : '20px 20px 20px 6px',
-          backgroundColor: isUser ? '#9B7FD4' : (message.isError ? '#FEE2E2' : 'white'),
-          color: isUser ? 'white' : (message.isError ? '#991B1B' : 'var(--dark)'),
+          backgroundColor: isUser ? 'var(--leaf-green)' : (message.isError ? '#FEE2E2' : 'var(--surface-white)'),
+          color: isUser ? 'white' : (message.isError ? '#991B1B' : 'var(--forest-green)'),
           boxShadow: isUser
-            ? '0 4px 16px rgba(155,127,212,0.35)'
-            : '0 2px 12px rgba(0,0,0,0.06)',
-          border: message.isError ? '1px solid #FECACA' : (isUser ? 'none' : '1px solid rgba(0,0,0,0.04)'),
+            ? '0 4px 16px rgba(99,134,83,0.3)'
+            : '0 2px 12px rgba(53,83,66,0.06)',
+          border: message.isError ? '1px solid #FECACA' : (isUser ? 'none' : '1px solid var(--border-sage)'),
           fontSize: '0.9rem',
           lineHeight: 1.6,
         }}
@@ -102,7 +103,7 @@ export const ChatMessage: React.FC<Props> = ({ message, onRetry, loading }) => {
         {isUser ? (
           <span style={{ whiteSpace: 'pre-wrap' }}>{message.content}</span>
         ) : (
-          <div className="prose-lumi">
+          <div className="prose-clover prose-lumi">
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
               {message.content}
             </ReactMarkdown>
@@ -111,7 +112,7 @@ export const ChatMessage: React.FC<Props> = ({ message, onRetry, loading }) => {
         <div style={{
           fontSize: '0.65rem',
           marginTop: 6,
-          opacity: 0.5,
+          opacity: 0.6,
           textAlign: 'right',
         }}>
           {new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
@@ -124,16 +125,17 @@ export const ChatMessage: React.FC<Props> = ({ message, onRetry, loading }) => {
           width: 32,
           height: 32,
           borderRadius: '50%',
-          backgroundColor: 'var(--peach)',
+          backgroundColor: 'var(--soft-mint)',
+          border: '1px solid var(--border-sage)',
           flexShrink: 0,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           fontSize: '0.8rem',
           fontWeight: 700,
-          color: '#c0785e',
+          color: 'var(--forest-green)',
           marginTop: 2,
-          boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+          boxShadow: '0 2px 8px rgba(53,83,66,0.1)',
         }}>
           U
         </div>

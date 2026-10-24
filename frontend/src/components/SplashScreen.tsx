@@ -5,8 +5,8 @@ const Sparkle: React.FC<{ style: React.CSSProperties }> = ({ style }) => (
   <svg
     viewBox="0 0 24 24"
     fill="currentColor"
-    className="animate-sparkle text-purple-300"
-    style={{ width: 16, height: 16, position: 'absolute', ...style }}
+    className="animate-sparkle"
+    style={{ width: 16, height: 16, position: 'absolute', color: 'var(--leaf-green)', ...style }}
   >
     <path d="M12 2l1.5 4.5L18 8l-4.5 1.5L12 14l-1.5-4.5L6 8l4.5-1.5z" />
   </svg>
@@ -35,13 +35,13 @@ export const SplashScreen: React.FC = () => {
       {/* Logo container with glow */}
       <div
         className="animate-pulse-glow"
-        style={{ position: 'relative', width: 160, height: 160, borderRadius: '50%' }}
+        style={{ position: 'relative', width: 160, height: 160 }}
       >
         <img
-          src="/lumi-logo.png"
-          alt="Lumi"
+          src="/clover-logo.png"
+          alt="Clover"
           className="animate-float"
-          style={{ width: '100%', height: '100%', objectFit: 'contain', borderRadius: '50%' }}
+          style={{ width: '100%', height: '100%', objectFit: 'contain' }}
         />
         {/* Sparkles */}
         <Sparkle style={{ top: -8, right: 10, animationDelay: '0s' }} />
@@ -54,11 +54,11 @@ export const SplashScreen: React.FC = () => {
       <div style={{ textAlign: 'center' }}>
         <p style={{
           fontSize: '1.05rem',
-          color: 'rgba(57,52,67,0.6)',
+          color: 'var(--forest-green)',
           letterSpacing: '0.02em',
           fontStyle: 'italic',
         }}>
-          A little magic is loading...
+          Growing your AI study space... 🍀
         </p>
       </div>
 
@@ -66,7 +66,7 @@ export const SplashScreen: React.FC = () => {
       <div style={{
         width: 200,
         height: 4,
-        backgroundColor: 'var(--lavender)',
+        backgroundColor: 'var(--soft-mint)',
         borderRadius: 9999,
         overflow: 'hidden',
       }}>
@@ -74,7 +74,7 @@ export const SplashScreen: React.FC = () => {
           className="animate-loading-bar"
           style={{
             height: '100%',
-            background: 'linear-gradient(90deg, #C9B8E8, #9B7FD4)',
+            background: 'linear-gradient(90deg, #A8C686, #638653)',
             borderRadius: 9999,
           }}
         />

@@ -6,12 +6,12 @@ interface Props {
 }
 
 const suggestions = [
-  { icon: Lightbulb, text: 'Explain quantum entanglement simply', shortcut: 'explain' as const, bg: '#F8E8DD', border: '#e8b48a', iconColor: '#c0785e' },
-  { icon: BookOpen, text: 'Summarize the French Revolution', shortcut: 'summarize' as const, bg: '#E6EFE5', border: '#8ab88a', iconColor: '#5a8a5a' },
-  { icon: HelpCircle, text: 'Quiz me on Python basics', shortcut: 'quiz' as const, bg: '#E7EFF9', border: '#8aaae8', iconColor: '#5a75b8' },
-  { icon: Brain, text: 'How does the human brain form memories?', shortcut: undefined, bg: '#EDE5F7', border: '#c9b8e8', iconColor: '#9B7FD4' },
-  { icon: MessageCircle, text: 'Help me write an essay introduction', shortcut: undefined, bg: '#F8E8DD', border: '#e8b48a', iconColor: '#c0785e' },
-  { icon: Sparkles, text: 'Give me 5 creative story ideas', shortcut: undefined, bg: '#E6EFE5', border: '#8ab88a', iconColor: '#5a8a5a' },
+  { icon: Lightbulb, text: 'Explain quantum entanglement simply', shortcut: 'explain' as const, bg: '#E7F0D5', border: '#A8C686', iconColor: '#355342' },
+  { icon: BookOpen, text: 'Summarize the French Revolution', shortcut: 'summarize' as const, bg: '#F1F3E5', border: '#DFE7D7', iconColor: '#638653' },
+  { icon: HelpCircle, text: 'Quiz me on Python basics', shortcut: 'quiz' as const, bg: '#FFFEFA', border: '#A8C686', iconColor: '#355342' },
+  { icon: Brain, text: 'How does the human brain form memories?', shortcut: undefined, bg: '#E7F0D5', border: '#A8C686', iconColor: '#638653' },
+  { icon: MessageCircle, text: 'Help me write an essay introduction', shortcut: undefined, bg: '#F1F3E5', border: '#DFE7D7', iconColor: '#355342' },
+  { icon: Sparkles, text: 'Give me 5 creative story ideas', shortcut: undefined, bg: '#FFFEFA', border: '#DFE7D7', iconColor: '#638653' },
 ];
 
 export const WelcomeScreen: React.FC<Props> = ({ onSuggestion }) => {
@@ -29,16 +29,16 @@ export const WelcomeScreen: React.FC<Props> = ({ onSuggestion }) => {
     }}>
       {/* Logo */}
       <img
-        src="/lumi-logo.png"
-        alt="Lumi"
+        src="/clover-logo.png"
+        alt="Clover"
         className="animate-float"
-        style={{ width: 96, height: 96, borderRadius: '50%', objectFit: 'cover', marginBottom: 20 }}
+        style={{ width: 140, height: 140, objectFit: 'contain', marginBottom: 16 }}
       />
 
-      <h1 style={{ fontSize: '1.9rem', fontWeight: 700, color: 'var(--dark)', margin: 0, textAlign: 'center' }}>
-        Hi, I'm <span style={{ color: '#9B7FD4' }}>Lumi</span> ✨
+      <h1 style={{ fontSize: '1.9rem', fontWeight: 700, color: 'var(--forest-green)', margin: 0, textAlign: 'center' }}>
+        Hi, I'm <span style={{ color: 'var(--leaf-green)' }}>Clover</span> 🍀
       </h1>
-      <p style={{ color: 'rgba(57,52,67,0.55)', marginTop: 8, textAlign: 'center', fontSize: '1rem', maxWidth: 380 }}>
+      <p style={{ color: 'rgba(53,83,66,0.65)', marginTop: 8, textAlign: 'center', fontSize: '1rem', maxWidth: 400 }}>
         Your AI-powered study buddy. Ask me anything — I'm here to help you learn, explore, and understand.
       </p>
 
@@ -71,7 +71,7 @@ export const WelcomeScreen: React.FC<Props> = ({ onSuggestion }) => {
               }}
               onMouseEnter={e => {
                 e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = '0 6px 20px rgba(0,0,0,0.08)';
+                e.currentTarget.style.boxShadow = '0 6px 20px rgba(53,83,66,0.08)';
               }}
               onMouseLeave={e => {
                 e.currentTarget.style.transform = 'translateY(0)';
@@ -90,7 +90,7 @@ export const WelcomeScreen: React.FC<Props> = ({ onSuggestion }) => {
               }}>
                 <Icon size={16} color={s.iconColor} />
               </div>
-              <span style={{ fontSize: '0.82rem', color: 'var(--dark)', fontWeight: 500, lineHeight: 1.4 }}>
+              <span style={{ fontSize: '0.82rem', color: 'var(--forest-green)', fontWeight: 500, lineHeight: 1.4 }}>
                 {s.text}
               </span>
             </button>

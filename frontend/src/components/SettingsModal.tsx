@@ -162,42 +162,42 @@ export const SettingsModal: React.FC<Props> = ({ isOpen, onClose, onConfigSaved 
       padding: 16,
     }}>
       <div style={{
-        backgroundColor: '#FFFFFF',
+        backgroundColor: 'var(--surface-white)',
         borderRadius: 24,
-        boxShadow: '0 12px 40px rgba(155, 127, 212, 0.25)',
+        boxShadow: '0 12px 40px rgba(53, 83, 66, 0.2)',
         width: '100%',
         maxWidth: 500,
         overflow: 'hidden',
-        border: '1.5px solid rgba(155, 127, 212, 0.2)',
+        border: '1.5px solid var(--border-sage)',
         animation: 'fadeIn 0.2s ease-out',
       }}>
         {/* Header */}
         <div style={{
           padding: '20px 24px',
-          borderBottom: '1px solid rgba(0,0,0,0.06)',
+          borderBottom: '1px solid var(--border-sage)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          backgroundColor: '#FAF8F5',
+          backgroundColor: 'var(--pale-sage)',
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <div style={{
               width: 36,
               height: 36,
               borderRadius: '50%',
-              backgroundColor: 'var(--lavender)',
+              backgroundColor: 'var(--soft-mint)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: '#9B7FD4',
+              color: 'var(--leaf-green)',
             }}>
               <Settings size={18} />
             </div>
             <div>
-              <h2 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--dark)', margin: 0 }}>
+              <h2 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--forest-green)', margin: 0 }}>
                 AI Provider Settings
               </h2>
-              <p style={{ fontSize: '0.78rem', color: 'rgba(57, 52, 67, 0.6)', margin: 0 }}>
+              <p style={{ fontSize: '0.78rem', color: 'rgba(53, 83, 66, 0.65)', margin: 0 }}>
                 Connect your personal API key for reliable responses
               </p>
             </div>
@@ -208,7 +208,7 @@ export const SettingsModal: React.FC<Props> = ({ isOpen, onClose, onConfigSaved 
               background: 'none',
               border: 'none',
               cursor: 'pointer',
-              color: 'rgba(57, 52, 67, 0.4)',
+              color: 'rgba(53, 83, 66, 0.5)',
               padding: 4,
               borderRadius: 8,
               display: 'flex',
@@ -222,16 +222,16 @@ export const SettingsModal: React.FC<Props> = ({ isOpen, onClose, onConfigSaved 
         <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: 20 }}>
           {/* Provider Tabs */}
           <div>
-            <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: 'var(--dark)', marginBottom: 8 }}>
+            <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: 'var(--forest-green)', marginBottom: 8 }}>
               Select Provider
             </label>
             <div style={{
               display: 'flex',
               gap: 8,
-              backgroundColor: '#FAF8F5',
+              backgroundColor: 'var(--pale-sage)',
               padding: 4,
               borderRadius: 14,
-              border: '1px solid rgba(0,0,0,0.06)',
+              border: '1px solid var(--border-sage)',
             }}>
               <button
                 type="button"
@@ -241,16 +241,16 @@ export const SettingsModal: React.FC<Props> = ({ isOpen, onClose, onConfigSaved 
                   padding: '8px 12px',
                   borderRadius: 10,
                   border: 'none',
-                  backgroundColor: selectedProvider === 'gemini' ? '#FFFFFF' : 'transparent',
-                  color: selectedProvider === 'gemini' ? '#9B7FD4' : 'rgba(57,52,67,0.6)',
+                  backgroundColor: selectedProvider === 'gemini' ? 'var(--surface-white)' : 'transparent',
+                  color: selectedProvider === 'gemini' ? 'var(--leaf-green)' : 'rgba(53, 83, 66, 0.65)',
                   fontWeight: selectedProvider === 'gemini' ? 700 : 500,
                   fontSize: '0.85rem',
-                  boxShadow: selectedProvider === 'gemini' ? '0 2px 8px rgba(0,0,0,0.06)' : 'none',
+                  boxShadow: selectedProvider === 'gemini' ? '0 2px 8px rgba(53, 83, 66, 0.08)' : 'none',
                   cursor: 'pointer',
                   transition: 'all 0.15s ease',
                 }}
               >
-                ✨ Google Gemini
+                🍀 Google Gemini
               </button>
               <button
                 type="button"
@@ -260,11 +260,11 @@ export const SettingsModal: React.FC<Props> = ({ isOpen, onClose, onConfigSaved 
                   padding: '8px 12px',
                   borderRadius: 10,
                   border: 'none',
-                  backgroundColor: selectedProvider === 'openai' ? '#FFFFFF' : 'transparent',
-                  color: selectedProvider === 'openai' ? '#9B7FD4' : 'rgba(57,52,67,0.6)',
+                  backgroundColor: selectedProvider === 'openai' ? 'var(--surface-white)' : 'transparent',
+                  color: selectedProvider === 'openai' ? 'var(--leaf-green)' : 'rgba(53, 83, 66, 0.65)',
                   fontWeight: selectedProvider === 'openai' ? 700 : 500,
                   fontSize: '0.85rem',
-                  boxShadow: selectedProvider === 'openai' ? '0 2px 8px rgba(0,0,0,0.06)' : 'none',
+                  boxShadow: selectedProvider === 'openai' ? '0 2px 8px rgba(53, 83, 66, 0.08)' : 'none',
                   cursor: 'pointer',
                   transition: 'all 0.15s ease',
                 }}
@@ -277,11 +277,11 @@ export const SettingsModal: React.FC<Props> = ({ isOpen, onClose, onConfigSaved 
           {/* Model Selection */}
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-              <label style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--dark)' }}>
+              <label style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--forest-green)' }}>
                 Model Selection
               </label>
-              <span style={{ fontSize: '0.72rem', color: 'rgba(57, 52, 67, 0.6)' }}>
-                API ID: <code style={{ backgroundColor: '#F3EEFB', padding: '1px 6px', borderRadius: 4, color: '#9B7FD4', fontWeight: 700 }}>{selectedModel}</code>
+              <span style={{ fontSize: '0.72rem', color: 'rgba(53, 83, 66, 0.65)' }}>
+                API ID: <code style={{ backgroundColor: 'var(--soft-mint)', padding: '1px 6px', borderRadius: 4, color: 'var(--forest-green)', fontWeight: 700 }}>{selectedModel}</code>
               </span>
             </div>
             <select
@@ -292,10 +292,10 @@ export const SettingsModal: React.FC<Props> = ({ isOpen, onClose, onConfigSaved 
                 width: '100%',
                 padding: '10px 14px',
                 borderRadius: 12,
-                border: '1.5px solid rgba(155, 127, 212, 0.25)',
+                border: '1.5px solid var(--border-sage)',
                 fontSize: '0.88rem',
-                color: 'var(--dark)',
-                backgroundColor: '#FFFFFF',
+                color: 'var(--forest-green)',
+                backgroundColor: 'var(--surface-white)',
                 outline: 'none',
               }}
             >
@@ -310,7 +310,7 @@ export const SettingsModal: React.FC<Props> = ({ isOpen, onClose, onConfigSaved 
           {/* API Key Input */}
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-              <label style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--dark)' }}>
+              <label style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--forest-green)' }}>
                 {selectedProvider === 'gemini' ? 'Gemini API Key' : 'OpenAI API Key'}
               </label>
               {config?.masked_key && (
@@ -322,12 +322,12 @@ export const SettingsModal: React.FC<Props> = ({ isOpen, onClose, onConfigSaved 
             <div style={{
               display: 'flex',
               alignItems: 'center',
-              backgroundColor: '#FFFFFF',
+              backgroundColor: 'var(--surface-white)',
               borderRadius: 12,
-              border: '1.5px solid rgba(155, 127, 212, 0.25)',
+              border: '1.5px solid var(--border-sage)',
               padding: '2px 10px',
             }}>
-              <Key size={16} color="rgba(57,52,67,0.4)" style={{ marginRight: 8, flexShrink: 0 }} />
+              <Key size={16} color="rgba(53, 83, 66, 0.45)" style={{ marginRight: 8, flexShrink: 0 }} />
               <input
                 type={showKey ? 'text' : 'password'}
                 placeholder={config?.is_custom_key ? 'Enter new key to replace' : (selectedProvider === 'gemini' ? 'AIzaSy...' : 'sk-...')}
@@ -339,7 +339,7 @@ export const SettingsModal: React.FC<Props> = ({ isOpen, onClose, onConfigSaved 
                   border: 'none',
                   outline: 'none',
                   fontSize: '0.88rem',
-                  color: 'var(--dark)',
+                  color: 'var(--forest-green)',
                   backgroundColor: 'transparent',
                 }}
               />
@@ -350,7 +350,7 @@ export const SettingsModal: React.FC<Props> = ({ isOpen, onClose, onConfigSaved 
                   background: 'none',
                   border: 'none',
                   cursor: 'pointer',
-                  color: 'rgba(57,52,67,0.4)',
+                  color: 'rgba(53, 83, 66, 0.45)',
                   padding: 4,
                   display: 'flex',
                 }}
@@ -398,8 +398,8 @@ export const SettingsModal: React.FC<Props> = ({ isOpen, onClose, onConfigSaved 
           {/* Privacy Note */}
           <div style={{
             fontSize: '0.72rem',
-            color: 'rgba(57, 52, 67, 0.55)',
-            backgroundColor: '#FAF8F5',
+            color: 'rgba(53, 83, 66, 0.65)',
+            backgroundColor: 'var(--pale-sage)',
             padding: '10px 12px',
             borderRadius: 10,
             lineHeight: 1.4,
@@ -411,8 +411,8 @@ export const SettingsModal: React.FC<Props> = ({ isOpen, onClose, onConfigSaved 
         {/* Footer */}
         <div style={{
           padding: '16px 24px',
-          backgroundColor: '#FAF8F5',
-          borderTop: '1px solid rgba(0,0,0,0.06)',
+          backgroundColor: 'var(--pale-sage)',
+          borderTop: '1px solid var(--border-sage)',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
@@ -430,7 +430,7 @@ export const SettingsModal: React.FC<Props> = ({ isOpen, onClose, onConfigSaved 
                 padding: '8px 12px',
                 borderRadius: 12,
                 border: '1px solid #FECACA',
-                backgroundColor: '#FFFFFF',
+                backgroundColor: 'var(--surface-white)',
                 color: '#DC2626',
                 fontSize: '0.8rem',
                 fontWeight: 600,
@@ -453,9 +453,9 @@ export const SettingsModal: React.FC<Props> = ({ isOpen, onClose, onConfigSaved 
                 gap: 6,
                 padding: '8px 14px',
                 borderRadius: 12,
-                border: '1.5px solid rgba(155, 127, 212, 0.3)',
-                backgroundColor: '#FFFFFF',
-                color: '#9B7FD4',
+                border: '1.5px solid var(--border-sage)',
+                backgroundColor: 'var(--surface-white)',
+                color: 'var(--leaf-green)',
                 fontSize: '0.82rem',
                 fontWeight: 600,
                 cursor: testing ? 'default' : 'pointer',
@@ -473,12 +473,12 @@ export const SettingsModal: React.FC<Props> = ({ isOpen, onClose, onConfigSaved 
                 padding: '8px 18px',
                 borderRadius: 12,
                 border: 'none',
-                backgroundColor: '#9B7FD4',
+                backgroundColor: 'var(--leaf-green)',
                 color: '#FFFFFF',
                 fontSize: '0.82rem',
                 fontWeight: 600,
                 cursor: loading ? 'default' : 'pointer',
-                boxShadow: '0 2px 8px rgba(155, 127, 212, 0.35)',
+                boxShadow: '0 2px 8px rgba(99, 134, 83, 0.35)',
               }}
             >
               {loading ? 'Saving...' : 'Save Configuration'}

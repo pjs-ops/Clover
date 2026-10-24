@@ -30,13 +30,14 @@ export const Sidebar: React.FC<Props> = ({ conversations, activeId, onNew, onSel
         width: collapsed ? 60 : 260,
         minWidth: collapsed ? 60 : 260,
         height: '100vh',
-        backgroundColor: 'var(--lavender)',
-        borderRight: '1px solid rgba(155,127,212,0.15)',
+        backgroundColor: 'var(--soft-mint)',
+        borderRight: '1.5px solid var(--border-sage)',
         display: 'flex',
         flexDirection: 'column',
         transition: 'width 0.3s ease, min-width 0.3s ease',
-        overflow: 'hidden',
+        overflow: 'visible',
         position: 'relative',
+        zIndex: 20,
       }}
     >
       {/* Toggle button */}
@@ -44,25 +45,36 @@ export const Sidebar: React.FC<Props> = ({ conversations, activeId, onNew, onSel
         onClick={() => setCollapsed(c => !c)}
         style={{
           position: 'absolute',
-          top: 16,
-          right: -12,
-          zIndex: 10,
-          width: 24,
-          height: 24,
+          top: 20,
+          right: -13,
+          zIndex: 50,
+          width: 26,
+          height: 26,
           borderRadius: '50%',
-          border: '1px solid rgba(155,127,212,0.3)',
-          backgroundColor: 'var(--cream)',
+          border: '1.5px solid var(--border-sage)',
+          backgroundColor: 'var(--surface-white)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           cursor: 'pointer',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
-          color: 'var(--lavender-deep)',
-          transition: 'all 0.2s',
+          boxShadow: '0 2px 6px rgba(53,83,66,0.12)',
+          color: 'var(--forest-green)',
+          transition: 'all 0.2s ease',
         }}
-        aria-label="Toggle sidebar"
+        onMouseEnter={e => {
+          e.currentTarget.style.backgroundColor = 'var(--pale-sage)';
+          e.currentTarget.style.borderColor = 'var(--leaf-green)';
+          e.currentTarget.style.color = 'var(--leaf-green)';
+        }}
+        onMouseLeave={e => {
+          e.currentTarget.style.backgroundColor = 'var(--surface-white)';
+          e.currentTarget.style.borderColor = 'var(--border-sage)';
+          e.currentTarget.style.color = 'var(--forest-green)';
+        }}
+        aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+        title={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
       >
-        {collapsed ? <ChevronRight size={12} /> : <ChevronLeft size={12} />}
+        {collapsed ? <ChevronRight size={14} /> : <ChevronLeft size={14} />}
       </button>
 
       {/* Brand */}
@@ -71,26 +83,26 @@ export const Sidebar: React.FC<Props> = ({ conversations, activeId, onNew, onSel
         display: 'flex',
         alignItems: 'center',
         gap: 10,
-        borderBottom: '1px solid rgba(155,127,212,0.15)',
+        borderBottom: '1.5px solid var(--border-sage)',
       }}>
         <img
-          src="/lumi-logo.png"
-          alt="Lumi"
+          src="/clover-logo.png"
+          alt="Clover"
           style={{
             width: collapsed ? 32 : 40,
             height: collapsed ? 32 : 40,
-            borderRadius: '50%',
-            objectFit: 'cover',
+            borderRadius: 8,
+            objectFit: 'contain',
             flexShrink: 0,
             transition: 'all 0.3s',
           }}
         />
         {!collapsed && (
           <div className="animate-fade-in">
-            <div style={{ fontWeight: 700, fontSize: '1.15rem', color: '#9B7FD4', letterSpacing: '-0.01em' }}>
-              Lumi
+            <div style={{ fontWeight: 700, fontSize: '1.15rem', color: 'var(--forest-green)', letterSpacing: '-0.01em' }}>
+              Clover
             </div>
-            <div style={{ fontSize: '0.7rem', color: 'rgba(57,52,67,0.5)', marginTop: -2 }}>
+            <div style={{ fontSize: '0.7rem', color: 'rgba(53,83,66,0.65)', marginTop: -2 }}>
               Your AI Study Buddy
             </div>
           </div>
@@ -106,9 +118,9 @@ export const Sidebar: React.FC<Props> = ({ conversations, activeId, onNew, onSel
             width: '100%',
             padding: collapsed ? '10px' : '10px 14px',
             borderRadius: 12,
-            border: '1.5px dashed rgba(155,127,212,0.5)',
-            backgroundColor: 'rgba(255,252,247,0.6)',
-            color: '#9B7FD4',
+            border: '1.5px dashed var(--leaf-green)',
+            backgroundColor: 'rgba(253,251,245,0.75)',
+            color: 'var(--forest-green)',
             fontWeight: 600,
             fontSize: '0.85rem',
             cursor: 'pointer',
@@ -116,10 +128,18 @@ export const Sidebar: React.FC<Props> = ({ conversations, activeId, onNew, onSel
             alignItems: 'center',
             justifyContent: collapsed ? 'center' : 'flex-start',
             gap: 8,
-            transition: 'all 0.2s',
+            transition: 'all 0.2s ease',
           }}
-          onMouseEnter={e => (e.currentTarget.style.backgroundColor = 'rgba(255,252,247,0.95)')}
-          onMouseLeave={e => (e.currentTarget.style.backgroundColor = 'rgba(255,252,247,0.6)')}
+          onMouseEnter={e => {
+            e.currentTarget.style.backgroundColor = 'var(--surface-white)';
+            e.currentTarget.style.color = 'var(--leaf-green)';
+            e.currentTarget.style.borderColor = 'var(--leaf-green)';
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.backgroundColor = 'rgba(253,251,245,0.75)';
+            e.currentTarget.style.color = 'var(--forest-green)';
+            e.currentTarget.style.borderColor = 'var(--leaf-green)';
+          }}
         >
           <Plus size={16} />
           {!collapsed && 'New Chat'}
@@ -130,12 +150,12 @@ export const Sidebar: React.FC<Props> = ({ conversations, activeId, onNew, onSel
       {!collapsed && (
         <div style={{ flex: 1, overflowY: 'auto', padding: '0 16px 16px' }}>
           {conversations.length === 0 ? (
-            <p style={{ fontSize: '0.78rem', color: 'rgba(57,52,67,0.4)', textAlign: 'center', marginTop: 24 }}>
+            <p style={{ fontSize: '0.78rem', color: 'rgba(53,83,66,0.5)', textAlign: 'center', marginTop: 24 }}>
               No chats yet.<br />Start a new conversation!
             </p>
           ) : (
             <>
-              <p style={{ fontSize: '0.7rem', fontWeight: 600, color: 'rgba(57,52,67,0.4)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 8 }}>
+              <p style={{ fontSize: '0.7rem', fontWeight: 600, color: 'rgba(53,83,66,0.55)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 8 }}>
                 Recent
               </p>
               {conversations.map(conv => (
@@ -150,18 +170,18 @@ export const Sidebar: React.FC<Props> = ({ conversations, activeId, onNew, onSel
                     borderRadius: 10,
                     marginBottom: 4,
                     cursor: 'pointer',
-                    backgroundColor: activeId === conv.id ? 'rgba(155,127,212,0.2)' : 'transparent',
+                    backgroundColor: activeId === conv.id ? 'var(--pale-sage)' : 'transparent',
                     transition: 'background-color 0.15s',
-                    border: activeId === conv.id ? '1px solid rgba(155,127,212,0.3)' : '1px solid transparent',
+                    border: activeId === conv.id ? '1px solid var(--sage)' : '1px solid transparent',
                   }}
                   onMouseEnter={e => {
-                    if (activeId !== conv.id) e.currentTarget.style.backgroundColor = 'rgba(255,252,247,0.7)';
+                    if (activeId !== conv.id) e.currentTarget.style.backgroundColor = 'rgba(255,254,250,0.7)';
                   }}
                   onMouseLeave={e => {
                     if (activeId !== conv.id) e.currentTarget.style.backgroundColor = 'transparent';
                   }}
                 >
-                  <MessageCircle size={14} style={{ color: 'rgba(57,52,67,0.4)', flexShrink: 0 }} />
+                  <MessageCircle size={14} style={{ color: activeId === conv.id ? 'var(--leaf-green)' : 'rgba(53,83,66,0.5)', flexShrink: 0 }} />
                   <div
                     style={{ flex: 1, minWidth: 0 }}
                     onClick={() => onSelect(conv.id)}
@@ -169,14 +189,14 @@ export const Sidebar: React.FC<Props> = ({ conversations, activeId, onNew, onSel
                     <div style={{
                       fontSize: '0.82rem',
                       fontWeight: 500,
-                      color: 'var(--dark)',
+                      color: 'var(--forest-green)',
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
                       whiteSpace: 'nowrap',
                     }}>
                       {conv.title}
                     </div>
-                    <div style={{ fontSize: '0.68rem', color: 'rgba(57,52,67,0.4)', marginTop: 1 }}>
+                    <div style={{ fontSize: '0.68rem', color: 'rgba(53,83,66,0.5)', marginTop: 1 }}>
                       {formatDate(conv.updated_at)}
                     </div>
                   </div>
@@ -187,14 +207,14 @@ export const Sidebar: React.FC<Props> = ({ conversations, activeId, onNew, onSel
                       border: 'none',
                       cursor: 'pointer',
                       padding: 2,
-                      color: 'rgba(57,52,67,0.3)',
+                      color: 'rgba(53,83,66,0.4)',
                       borderRadius: 4,
                       display: 'flex',
                       alignItems: 'center',
                       transition: 'color 0.15s',
                     }}
-                    onMouseEnter={e => (e.currentTarget.style.color = '#e55')}
-                    onMouseLeave={e => (e.currentTarget.style.color = 'rgba(57,52,67,0.3)')}
+                    onMouseEnter={e => (e.currentTarget.style.color = '#dc2626')}
+                    onMouseLeave={e => (e.currentTarget.style.color = 'rgba(53,83,66,0.4)')}
                     aria-label="Delete conversation"
                   >
                     <Trash2 size={12} />
@@ -218,13 +238,13 @@ export const Sidebar: React.FC<Props> = ({ conversations, activeId, onNew, onSel
                 width: 36,
                 height: 36,
                 borderRadius: 10,
-                border: activeId === conv.id ? '2px solid rgba(155,127,212,0.5)' : '2px solid transparent',
-                backgroundColor: activeId === conv.id ? 'rgba(155,127,212,0.2)' : 'transparent',
+                border: activeId === conv.id ? '2px solid var(--leaf-green)' : '2px solid transparent',
+                backgroundColor: activeId === conv.id ? 'var(--pale-sage)' : 'transparent',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: 'rgba(57,52,67,0.5)',
+                color: activeId === conv.id ? 'var(--leaf-green)' : 'rgba(53,83,66,0.6)',
                 transition: 'all 0.15s',
               }}
             >
@@ -236,7 +256,7 @@ export const Sidebar: React.FC<Props> = ({ conversations, activeId, onNew, onSel
 
       {/* Footer / Settings */}
       {onOpenSettings && (
-        <div style={{ padding: collapsed ? '8px 4px' : '12px 14px', borderTop: '1px solid rgba(155,127,212,0.15)' }}>
+        <div style={{ padding: collapsed ? '8px 4px' : '12px 14px', borderTop: '1.5px solid var(--border-sage)' }}>
           <button
             id="sidebar-settings-btn"
             onClick={onOpenSettings}
@@ -249,18 +269,24 @@ export const Sidebar: React.FC<Props> = ({ conversations, activeId, onNew, onSel
               gap: 8,
               padding: collapsed ? '8px 0' : '8px 12px',
               borderRadius: 12,
-              border: '1.5px solid rgba(155,127,212,0.2)',
-              backgroundColor: 'rgba(255,255,255,0.7)',
-              color: 'var(--dark)',
+              border: '1.5px solid var(--border-sage)',
+              backgroundColor: 'var(--surface-white)',
+              color: 'var(--forest-green)',
               fontSize: '0.82rem',
               fontWeight: 600,
               cursor: 'pointer',
-              transition: 'all 0.15s',
+              transition: 'all 0.15s ease',
             }}
-            onMouseEnter={e => (e.currentTarget.style.backgroundColor = 'white')}
-            onMouseLeave={e => (e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.7)')}
+            onMouseEnter={e => {
+              e.currentTarget.style.backgroundColor = 'var(--pale-sage)';
+              e.currentTarget.style.borderColor = 'var(--leaf-green)';
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.backgroundColor = 'var(--surface-white)';
+              e.currentTarget.style.borderColor = 'var(--border-sage)';
+            }}
           >
-            <Settings size={16} color="#9B7FD4" />
+            <Settings size={16} color="var(--leaf-green)" />
             {!collapsed && <span>Provider Settings</span>}
           </button>
         </div>

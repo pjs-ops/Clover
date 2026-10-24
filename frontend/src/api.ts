@@ -30,10 +30,10 @@ api.interceptors.request.use(config => {
 export function formatApiError(err: unknown): string {
   if (axios.isAxiosError(err)) {
     if (err.code === 'ECONNABORTED' || err.message?.toLowerCase().includes('timeout')) {
-      return '⏱️ Request timed out. Lumi took too long to respond. Please try again.';
+      return '⏱️ Request timed out. Clover took too long to respond. Please try again.';
     }
     if (!err.response) {
-      return '🌐 Unable to connect to Lumi backend. Please verify that the server is running.';
+      return '🌐 Unable to connect to Clover backend. Please verify that the server is running.';
     }
     const status = err.response.status;
     const detail = err.response.data?.detail;
@@ -41,7 +41,7 @@ export function formatApiError(err: unknown): string {
       return detail || '🔑 Invalid API key. Check your API key in Settings.';
     }
     if (status === 429) {
-      return detail || '⏳ Lumi is receiving too many requests right now. Please wait a moment and try again.';
+      return detail || '⏳ Clover is receiving too many requests right now. Please wait a moment and try again.';
     }
     if (status === 503) {
       return detail || '☁️ Gemini service is temporarily unavailable. Please try again shortly.';

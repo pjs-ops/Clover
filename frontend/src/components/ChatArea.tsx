@@ -14,16 +14,24 @@ interface Props {
 const TypingIndicator: React.FC = () => (
   <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10, marginBottom: 16 }}>
     <img
-      src="/lumi-logo.png"
-      alt="Lumi"
-      style={{ width: 32, height: 32, borderRadius: '50%', objectFit: 'cover', marginTop: 2 }}
+      src="/clover-icon.png"
+      alt="Clover"
+      style={{
+        width: 32,
+        height: 32,
+        borderRadius: '50%',
+        objectFit: 'cover',
+        marginTop: 2,
+        border: '1px solid var(--border-sage)',
+        boxShadow: '0 2px 8px rgba(99,134,83,0.2)',
+      }}
     />
     <div style={{
       padding: '12px 16px',
       borderRadius: '20px 20px 20px 6px',
-      backgroundColor: 'white',
-      boxShadow: '0 2px 12px rgba(0,0,0,0.06)',
-      border: '1px solid rgba(0,0,0,0.04)',
+      backgroundColor: 'var(--surface-white)',
+      boxShadow: '0 2px 12px rgba(53,83,66,0.06)',
+      border: '1px solid var(--border-sage)',
       display: 'flex',
       alignItems: 'center',
       gap: 4,
@@ -36,7 +44,7 @@ const TypingIndicator: React.FC = () => (
             width: 8,
             height: 8,
             borderRadius: '50%',
-            backgroundColor: '#C9B8E8',
+            backgroundColor: 'var(--leaf-green)',
             display: 'inline-block',
           }}
         />
