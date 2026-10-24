@@ -236,17 +236,6 @@ Potential future improvements include:
 
 These are proposed enhancements and may not be implemented in the current version.
 
-## 🤝 Contributing
-
-Contributions, bug reports, and suggestions are welcome.
-
-1. Fork the repository.
-2. Create a feature branch.
-3. Implement and test your changes.
-4. Submit a pull request describing your changes.
-
-Please do not commit credentials, environment files, or sensitive information.
-
 ## 📄 License
 
 A license has not yet been specified. Add a `LICENSE` file and update this section once the project's licensing terms have been decided.
