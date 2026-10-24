@@ -21,6 +21,13 @@ from providers import (
     AIProvider,
     redact_secrets,
 )
+from translation_service import (
+    translation_service,
+    TranslationError,
+    UnsupportedLanguagePairError,
+    EmptyInputError,
+)
+from evaluation_service import evaluation_service
 
 # ── Logging Setup ──────────────────────────────────────────────────────────────
 logging.basicConfig(
@@ -584,3 +591,111 @@ async def upload_document(file: UploadFile = File(...)):
         "filename": file.filename,
         "char_count": len(text),
     }
+
+
+# ── Machine Translation & Evaluation Routes ───────────────────────────────────
+
+class TranslationRequest(BaseModel):
+    text: str
+    source_lang: str = "en"
+    target_lang: str = "hi"
+
+    @field_validator("text")
+    @classmethod
+    def validate_text(cls, v: str) -> str:
+        if not v or not v.strip():
+            raise ValueError("Translation text cannot be empty.")
+        if len(v) > 5000:
+            raise ValueError("Text exceeds maximum supported limit of 5000 characters.")
+        return v.strip()
+
+
+class TranslationResponse(BaseModel):
+    source_text: str
+    translated_text: str
+    source_lang: str
+    source_lang_name: str
+    target_lang: str
+    target_lang_name: str
+    model_name: str
+    device: str
+    latency_ms: float
+    input_token_count: int
+    output_token_count: int
+
+
+class EvaluationRequest(BaseModel):
+    source_lang: str = "en"
+    target_lang: str = "hi"
+    sample_limit: Optional[int] = None
+
+
+@app.get("/api/translation/models")
+def get_translation_models():
+    """Return supported neural translation language pairs and model status."""
+    return {
+        "supported_pairs": translation_service.get_supported_pairs(),
+        "device": translation_service.device,
+        "default_pair": {"source": "en", "target": "hi"},
+    }
+
+
+@app.post("/api/translation/translate", response_model=TranslationResponse)
+async def translate_text(req: TranslationRequest):
+    """Translate text between supported languages using dedicated pre-trained MarianMT transformers."""
+    try:
+        loop = asyncio.get_event_loop()
+        result = await loop.run_in_executor(
+            None,
+            translation_service.translate,
+            req.text,
+            req.source_lang,
+            req.target_lang,
+        )
+        return TranslationResponse(**result)
+    except EmptyInputError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except UnsupportedLanguagePairError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except TranslationError as e:
+        raise HTTPException(status_code=500, detail=f"Neural translation failure: {str(e)}")
+    except Exception as e:
+        logger.error("Unexpected error in translation endpoint: %s", e, exc_info=True)
+        raise HTTPException(status_code=500, detail="An unexpected error occurred during translation.")
+
+
+@app.post("/api/translation/evaluate")
+async def evaluate_translation(req: EvaluationRequest):
+    """Run translation benchmark evaluation on a held-out dataset and compute BLEU/chrF metrics."""
+    try:
+        loop = asyncio.get_event_loop()
+        report = await loop.run_in_executor(
+            None,
+            evaluation_service.run_evaluation,
+            req.source_lang,
+            req.target_lang,
+            req.sample_limit,
+        )
+        return report
+    except FileNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+    except Exception as e:
+        logger.error("Error in evaluation endpoint: %s", e, exc_info=True)
+        raise HTTPException(status_code=500, detail=f"Benchmark evaluation failed: {str(e)}")
+
+
+@app.get("/api/translation/evaluation/latest")
+async def get_latest_evaluation(source_lang: str = "en", target_lang: str = "hi"):
+    """Get the latest completed translation evaluation report or run an initial benchmark."""
+    report = evaluation_service.get_latest_report(source_lang, target_lang)
+    if report is None:
+        loop = asyncio.get_event_loop()
+        report = await loop.run_in_executor(
+            None,
+            evaluation_service.run_evaluation,
+            source_lang,
+            target_lang,
+            20,
+        )
+    return report
+

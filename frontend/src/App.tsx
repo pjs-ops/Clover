@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { SplashScreen } from './components/SplashScreen';
 import { Sidebar } from './components/Sidebar';
 import { ChatArea } from './components/ChatArea';
+import { TranslationView } from './components/TranslationView';
 import { SettingsModal } from './components/SettingsModal';
 import { useChat } from './hooks/useChat';
 
 const App: React.FC = () => {
+  const [activeView, setActiveView] = useState<'translate' | 'chat'>('translate');
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   const {
@@ -42,17 +44,23 @@ const App: React.FC = () => {
         <Sidebar
           conversations={conversations}
           activeId={activeId}
+          activeView={activeView}
+          onViewChange={setActiveView}
           onNew={newChat}
           onSelect={loadConversation}
           onDelete={removeConversation}
           onOpenSettings={() => setIsSettingsOpen(true)}
         />
-        <ChatArea
-          messages={messages}
-          loading={loading}
-          onSend={send}
-          onRetry={retryMessage}
-        />
+        {activeView === 'translate' ? (
+          <TranslationView />
+        ) : (
+          <ChatArea
+            messages={messages}
+            loading={loading}
+            onSend={send}
+            onRetry={retryMessage}
+          />
+        )}
       </div>
     </>
   );

@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "domain": "Academic & Scientific",
+    "source": "Artificial intelligence is transforming modern education and research.",
+    "reference": "कृत्रिम बुद्धिमत्ता आधुनिक शिक्षा और अनुसंधान को बदल रही है।"
+  },
+  {
+    "id": 2,
+    "domain": "Academic & Scientific",
+    "source": "The student completed the final examination with great distinction.",
+    "reference": "छात्र ने अंतिम परीक्षा बड़े गौरव के साथ पूरी की।"
+  },
+  {
+    "id": 3,
+    "domain": "Academic & Scientific",
+    "source": "Machine translation uses neural networks to understand language patterns.",
+    "reference": "मशीनी अनुवाद भाषा के पैटर्न को समझने के लिए तंत्रिका नेटवर्क का उपयोग करता है।"
+  },
+  {
+    "id": 4,
+    "domain": "Computer Science",
+    "source": "Natural language processing enables computers to comprehend human speech.",
+    "reference": "प्राकृतिक भाषा प्रसंस्करण कंप्यूटरों को मानव भाषण को समझने में सक्षम बनाता है।"
+  },
+  {
+    "id": 5,
+    "domain": "Computer Science",
+    "source": "Transformers rely on self-attention mechanisms to process sequential data.",
+    "reference": "ट्रांसफॉर्मर अनुक्रमिक डेटा को संसाधित करने के लिए आत्म-ध्यान तंत्र पर निर्भर करते हैं।"
+  },
+  {
+    "id": 6,
+    "domain": "Higher Education",
+    "source": "The university library provides access to thousands of scientific journals.",
+    "reference": "विश्वविद्यालय का पुस्तकालय हजारों वैज्ञानिक पत्रिकाओं तक पहुंच प्रदान करता है।"
+  },
+  {
+    "id": 7,
+    "domain": "Higher Education",
+    "source": "We must submit the laboratory report before Friday evening.",
+    "reference": "हमें शुक्रवार शाम से पहले प्रयोगशाला रिपोर्ट जमा करनी होगी।"
+  },
+  {
+    "id": 8,
+    "domain": "General Knowledge",
+    "source": "Water boils at one hundred degrees Celsius at standard atmospheric pressure.",
+    "reference": "मानक वायुमंडलीय दबाव पर पानी सौ डिग्री सेल्सियस पर उबलता है।"
+  },
+  {
+    "id": 9,
+    "domain": "General Knowledge",
+    "source": "Mathematics is the foundational language of all physical sciences.",
+    "reference": "गणित सभी भौतिक विज्ञानों की मूलभूत भाषा है।"
+  },
+  {
+    "id": 10,
+    "domain": "Academic & Research",
+    "source": "The professor explained the complex theorem with clear examples.",
+    "reference": "प्रोफेसर ने स्पष्ट उदाहरणों के साथ जटिल प्रमेय समझाया।"
+  },
+  {
+    "id": 11,
+    "domain": "Academic & Research",
+    "source": "Students should review their study notes every day.",
+    "reference": "छात्रों को हर दिन अपने अध्ययन नोट्स की समीक्षा करनी चाहिए।"
+  },
+  {
+    "id": 12,
+    "domain": "Literature & Language",
+    "source": "Reading books regularly improves vocabulary and critical thinking.",
+    "reference": "नियमित रूप से किताबें पढ़ने से शब्दावली और आलोचनात्मक सोच में सुधार होता है।"
+  },
+  {
+    "id": 13,
+    "domain": "Literature & Language",
+    "source": "Knowledge is the greatest power that human beings possess.",
+    "reference": "ज्ञान सबसे बड़ी शक्ति है जो मनुष्यों के पास है।"
+  },
+  {
+    "id": 14,
+    "domain": "Technology",
+    "source": "Cloud computing allows researchers to train deep learning models easily.",
+    "reference": "क्लाउड कंप्यूटिंग शोधकर्ताओं को आसानी से गहन शिक्षण मॉडल प्रशिक्षित करने की अनुमति देता है।"
+  },
+  {
+    "id": 15,
+    "domain": "Technology",
+    "source": "Data privacy and algorithm security are essential requirements for modern software.",
+    "reference": "डेटा गोपनीयता और एल्गोरिदम सुरक्षा आधुनिक सॉफ़्टवेयर के लिए आवश्यक आवश्यकताएं हैं।"
+  },
+  {
+    "id": 16,
+    "domain": "Daily Conversation",
+    "source": "Can you please help me understand this homework question?",
+    "reference": "क्या आप कृपया इस गृहकार्य प्रश्न को समझने में मेरी मदद कर सकते हैं?"
+  },
+  {
+    "id": 17,
+    "domain": "Daily Conversation",
+    "source": "Good morning, how are your exam preparations going today?",
+    "reference": "सुप्रभात, आज आपकी परीक्षा की तैयारी कैसी चल रही है?"
+  },
+  {
+    "id": 18,
+    "domain": "Academic Guidance",
+    "source": "Time management is essential for success in academic examinations.",
+    "reference": "अकादमिक परीक्षाओं में सफलता के लिए समय प्रबंधन आवश्यक है।"
+  },
+  {
+    "id": 19,
+    "domain": "Academic Guidance",
+    "source": "Practice and consistency lead to mastery in computer programming.",
+    "reference": "अभ्यास और निरंतरता कंप्यूटर प्रोग्रामिंग में महारत की ओर ले जाती है।"
+  },
+  {
+    "id": 20,
+    "domain": "Environment & Science",
+    "source": "Solar energy is a clean and renewable source of power for our future.",
+    "reference": "सौर ऊर्जा हमारे भविष्य के लिए बिजली का एक स्वच्छ और नवीकरणीय स्रोत है।"
+  }
+]

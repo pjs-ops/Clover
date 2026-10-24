@@ -6,6 +6,10 @@ import type {
   SettingsConfig,
   SettingsUpdate,
   SettingsTestRequest,
+  TranslationModelsResponse,
+  TranslationRequest,
+  TranslationResponse,
+  EvaluationReport,
 } from './types';
 
 let inMemorySessionId = '';
@@ -216,4 +220,40 @@ export async function uploadDocument(file: File): Promise<{ content: string; fil
   });
   return res.data;
 }
+
+// ── Machine Translation Endpoints ─────────────────────────────────────────────
+
+export async function getTranslationModels(): Promise<TranslationModelsResponse> {
+  const res = await api.get<TranslationModelsResponse>('/translation/models');
+  return res.data;
+}
+
+export async function translateText(req: TranslationRequest): Promise<TranslationResponse> {
+  const res = await api.post<TranslationResponse>('/translation/translate', req);
+  return res.data;
+}
+
+export async function evaluateTranslation(
+  sourceLang: string = 'en',
+  targetLang: string = 'hi',
+  sampleLimit?: number,
+): Promise<EvaluationReport> {
+  const res = await api.post<EvaluationReport>('/translation/evaluate', {
+    source_lang: sourceLang,
+    target_lang: targetLang,
+    sample_limit: sampleLimit,
+  });
+  return res.data;
+}
+
+export async function getLatestEvaluation(
+  sourceLang: string = 'en',
+  targetLang: string = 'hi',
+): Promise<EvaluationReport> {
+  const res = await api.get<EvaluationReport>('/translation/evaluation/latest', {
+    params: { source_lang: sourceLang, target_lang: targetLang },
+  });
+  return res.data;
+}
+
 

@@ -1,19 +1,29 @@
 import React, { useState } from 'react';
-import { Plus, MessageCircle, Trash2, ChevronLeft, ChevronRight, Settings } from 'lucide-react';
+import { Plus, MessageCircle, Trash2, ChevronLeft, ChevronRight, Settings, Languages, Bot } from 'lucide-react';
 import type { Conversation } from '../types';
 
 interface Props {
   conversations: Conversation[];
   activeId: string | null;
+  activeView: 'translate' | 'chat';
+  onViewChange: (view: 'translate' | 'chat') => void;
   onNew: () => void;
   onSelect: (id: string) => void;
   onDelete: (id: string) => void;
   onOpenSettings?: () => void;
 }
 
-export const Sidebar: React.FC<Props> = ({ conversations, activeId, onNew, onSelect, onDelete, onOpenSettings }) => {
+export const Sidebar: React.FC<Props> = ({
+  conversations,
+  activeId,
+  activeView,
+  onViewChange,
+  onNew,
+  onSelect,
+  onDelete,
+  onOpenSettings,
+}) => {
   const [collapsed, setCollapsed] = useState(false);
-
 
   const formatDate = (ts: number) => {
     const d = new Date(ts);
@@ -22,6 +32,16 @@ export const Sidebar: React.FC<Props> = ({ conversations, activeId, onNew, onSel
     if (diffDays === 0) return 'Today';
     if (diffDays === 1) return 'Yesterday';
     return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  };
+
+  const handleSelectConversation = (id: string) => {
+    onViewChange('chat');
+    onSelect(id);
+  };
+
+  const handleNewChat = () => {
+    onViewChange('chat');
+    onNew();
   };
 
   return (
@@ -109,11 +129,99 @@ export const Sidebar: React.FC<Props> = ({ conversations, activeId, onNew, onSel
         )}
       </div>
 
+      {/* Module Navigation Switcher */}
+      <div style={{
+        padding: collapsed ? '10px 8px' : '12px 14px',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 6,
+        borderBottom: '1.5px solid var(--border-sage)',
+      }}>
+        {/* Machine Translation (Primary Academic Module) */}
+        <button
+          id="nav-translation-btn"
+          onClick={() => onViewChange('translate')}
+          title="Neural Machine Translation (Primary Feature)"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: collapsed ? 'center' : 'flex-start',
+            gap: 10,
+            padding: collapsed ? '10px 0' : '9px 12px',
+            borderRadius: 12,
+            border: activeView === 'translate' ? '1.5px solid var(--leaf-green)' : '1.5px solid transparent',
+            backgroundColor: activeView === 'translate' ? 'var(--surface-white)' : 'transparent',
+            color: activeView === 'translate' ? 'var(--leaf-green)' : 'var(--forest-green)',
+            fontWeight: activeView === 'translate' ? 700 : 500,
+            fontSize: '0.84rem',
+            cursor: 'pointer',
+            boxShadow: activeView === 'translate' ? '0 2px 8px rgba(53,83,66,0.08)' : 'none',
+            transition: 'all 0.15s ease',
+          }}
+          onMouseEnter={e => {
+            if (activeView !== 'translate') e.currentTarget.style.backgroundColor = 'rgba(255,254,250,0.6)';
+          }}
+          onMouseLeave={e => {
+            if (activeView !== 'translate') e.currentTarget.style.backgroundColor = 'transparent';
+          }}
+        >
+          <Languages size={17} color={activeView === 'translate' ? 'var(--leaf-green)' : 'rgba(53,83,66,0.7)'} />
+          {!collapsed && (
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flex: 1 }}>
+              <span>Neural Translation</span>
+              <span style={{
+                fontSize: '0.62rem',
+                fontWeight: 700,
+                padding: '1px 6px',
+                borderRadius: 10,
+                backgroundColor: 'var(--soft-mint)',
+                color: 'var(--leaf-green)',
+                border: '1px solid var(--sage)',
+              }}>
+                NLP
+              </span>
+            </div>
+          )}
+        </button>
+
+        {/* AI Chatbot (Additional Feature) */}
+        <button
+          id="nav-chat-btn"
+          onClick={() => onViewChange('chat')}
+          title="AI Study Chatbot"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: collapsed ? 'center' : 'flex-start',
+            gap: 10,
+            padding: collapsed ? '10px 0' : '9px 12px',
+            borderRadius: 12,
+            border: activeView === 'chat' ? '1.5px solid var(--leaf-green)' : '1.5px solid transparent',
+            backgroundColor: activeView === 'chat' ? 'var(--surface-white)' : 'transparent',
+            color: activeView === 'chat' ? 'var(--leaf-green)' : 'var(--forest-green)',
+            fontWeight: activeView === 'chat' ? 700 : 500,
+            fontSize: '0.84rem',
+            cursor: 'pointer',
+            boxShadow: activeView === 'chat' ? '0 2px 8px rgba(53,83,66,0.08)' : 'none',
+            transition: 'all 0.15s ease',
+          }}
+          onMouseEnter={e => {
+            if (activeView !== 'chat') e.currentTarget.style.backgroundColor = 'rgba(255,254,250,0.6)';
+          }}
+          onMouseLeave={e => {
+            if (activeView !== 'chat') e.currentTarget.style.backgroundColor = 'transparent';
+          }}
+        >
+          <Bot size={17} color={activeView === 'chat' ? 'var(--leaf-green)' : 'rgba(53,83,66,0.7)'} />
+          {!collapsed && <span>AI Study Chat</span>}
+        </button>
+      </div>
+
       {/* New Chat button */}
       <div style={{ padding: collapsed ? '12px 10px' : '12px 16px' }}>
         <button
           id="new-chat-btn"
-          onClick={onNew}
+          onClick={handleNewChat}
           style={{
             width: '100%',
             padding: collapsed ? '10px' : '10px 14px',
@@ -184,7 +292,7 @@ export const Sidebar: React.FC<Props> = ({ conversations, activeId, onNew, onSel
                   <MessageCircle size={14} style={{ color: activeId === conv.id ? 'var(--leaf-green)' : 'rgba(53,83,66,0.5)', flexShrink: 0 }} />
                   <div
                     style={{ flex: 1, minWidth: 0 }}
-                    onClick={() => onSelect(conv.id)}
+                    onClick={() => handleSelectConversation(conv.id)}
                   >
                     <div style={{
                       fontSize: '0.82rem',
@@ -232,7 +340,7 @@ export const Sidebar: React.FC<Props> = ({ conversations, activeId, onNew, onSel
           {conversations.map(conv => (
             <button
               key={conv.id}
-              onClick={() => onSelect(conv.id)}
+              onClick={() => handleSelectConversation(conv.id)}
               title={conv.title}
               style={{
                 width: 36,

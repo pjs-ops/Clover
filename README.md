@@ -1,38 +1,45 @@
 
-# 🍀 Clover — Your AI Study Buddy
+# 🍀 Clover — Academic Neural Machine Translation & AI Study Workspace
 
 <p align="center">
   <strong>Learn smarter. Understand better. Grow every day.</strong>
 </p>
 
 <p align="center">
-  An AI-powered study companion designed to make learning simpler, more interactive, and accessible.
+  An Academic Natural Language Processing (NLP) system featuring Neural Machine Translation with Pre-trained Transformer Architectures, automated BLEU/chrF evaluation, and an AI-powered conversational study companion.
 </p>
 
 ---
 
 ## 📖 About Clover
 
-Clover is an AI-powered study companion that helps students explore concepts, simplify complex topics, summarize information, and brainstorm ideas through conversational AI.
+Clover is an academic Natural Language Processing (NLP) workspace developed to satisfy the assignment:
+> *"Develop a Machine Translation system using pre-trained transformer architectures to translate text between two languages and evaluate translation performance quality."*
 
-Built with a modern web stack and integrated with Google's Gemini API, Clover offers a clean, nature-inspired interface designed to make AI-assisted learning approachable and intuitive.
+Clover features a dedicated **Neural Machine Translation (NMT)** engine powered by pre-trained **MarianMT Transformer architectures** (`Helsinki-NLP/opus-mt-en-hi` and `Helsinki-NLP/opus-mt-hi-en`), paired with automated **Corpus BLEU & chrF performance evaluation** on a held-out parallel corpus. In addition, Clover provides an AI conversational study assistant supporting document Q&A, study shortcuts, and custom provider configurations.
 
-Whether you're revising academic concepts, exploring a new subject, or developing creative ideas, Clover provides a conversational space to support your learning journey.
+For detailed SRS requirements, UML diagrams, model cards, and benchmark results, see [TRANSLATION_DOCS.md](file:///c:/Users/jadha/Downloads/MindMate%20AI/TRANSLATION_DOCS.md).
 
-## ✨ Features
+---
 
-- **AI-Powered Chat** — Ask questions and explore topics through conversational AI.
+## 🎯 Primary Academic Features
+
+- **Bidirectional Neural Machine Translation (English ↔ Hindi)** — Uses dedicated Hugging Face MarianMT sequence-to-sequence transformers running local inference with sub-second CPU latency.
+- **Automated Metric Evaluation (BLEU & chrF)** — Quantitative performance evaluation using `sacrebleu` on a curated held-out parallel test set.
+- **Sample Prediction & Error Review** — Interactive inspection of source sentences, gold human references, and model hypotheses with sentence-level BLEU and chrF scores.
+- **Academic Discussion & Limitations** — Detailed linguistic error analysis covering SVO vs SOV syntax, gender/honorific agreement, and compound postpositions.
+- **Dedicated CLI Evaluation Runner** — Execute benchmarks via `python backend/evaluate.py --source en --target hi`.
+
+## ✨ Complementary AI Study Features
+
+- **AI-Powered Chat** — Ask questions and explore topics through conversational AI with document Q&A (PDF, TXT, MD).
 - **Explain Simply** — Understand complex concepts through clear, accessible explanations.
 - **Smart Summarization** — Condense information into concise summaries.
 - **Quiz Generation** — Use study shortcuts to support revision and practice.
 - **Creative Brainstorming** — Generate ideas, writing prompts, and project inspiration.
 - **Conversation Management** — Start new chats and revisit recent conversations.
 - **Personal API Configuration** — Connect your own API key through Provider Settings.
-- **Provider Selection** — Choose supported AI providers and models.
-- **Connection Testing** — Test provider connectivity before saving the configuration.
-- **Nature-Inspired UI** — A calm green-and-cream interface with Clover branding.
-
-*Available features depend on the current application configuration and supported provider capabilities.*
+- **Provider Selection** — Choose supported AI providers (Gemini, OpenAI) and test connectivity before saving.
 
 ## 🎨 Design Philosophy
 
@@ -54,11 +61,12 @@ The interface prioritizes readability, simplicity, and a distraction-conscious l
 | Layer | Technology |
 |---|---|
 | Frontend | React, TypeScript, Vite |
-| Styling | Tailwind CSS |
-| Backend | Python, FastAPI |
-| AI Integration | Google Gemini API |
-| Frontend Dependencies | npm |
-| Backend Dependencies | pip |
+| Backend | Python 3.13, FastAPI, Uvicorn |
+| Pre-trained Transformer | MarianMT (`Helsinki-NLP/opus-mt-en-hi`, `Helsinki-NLP/opus-mt-hi-en`) |
+| Deep Learning Framework | PyTorch (CPU-optimized) & Hugging Face Transformers |
+| NLP Tokenizer | SentencePiece unigram subword tokenizer |
+| MT Evaluation Metrics | SacreBLEU (Corpus BLEU, Corpus chrF) |
+| Test Suite | PyTest, PyTest-Asyncio (56 total tests passing) |
 | Configuration | Environment variables, python-dotenv |
 | API Documentation | FastAPI / Swagger UI |
 

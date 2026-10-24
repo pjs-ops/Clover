@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "domain": "Academic & Scientific",
+    "source": "कृत्रिम बुद्धिमत्ता आधुनिक शिक्षा और अनुसंधान को बदल रही है।",
+    "reference": "Artificial intelligence is changing modern education and research."
+  },
+  {
+    "id": 2,
+    "domain": "Academic & Scientific",
+    "source": "छात्र ने अंतिम परीक्षा बड़े गौरव के साथ पूरी की।",
+    "reference": "The student completed the final examination with great distinction."
+  },
+  {
+    "id": 3,
+    "domain": "Computer Science",
+    "source": "प्राकृतिक भाषा प्रसंस्करण कंप्यूटरों को मानव भाषा समझने में सक्षम बनाता है।",
+    "reference": "Natural language processing enables computers to understand human language."
+  },
+  {
+    "id": 4,
+    "domain": "Higher Education",
+    "source": "विश्वविद्यालय का पुस्तकालय छात्रों के लिए खुला है।",
+    "reference": "The university library is open for students."
+  },
+  {
+    "id": 5,
+    "domain": "General Knowledge",
+    "source": "गणित सभी विज्ञानों की मूलभूत भाषा है।",
+    "reference": "Mathematics is the fundamental language of all sciences."
+  },
+  {
+    "id": 6,
+    "domain": "Academic Guidance",
+    "source": "समय प्रबंधन परीक्षाओं में सफलता के लिए बहुत महत्वपूर्ण है।",
+    "reference": "Time management is very important for success in examinations."
+  },
+  {
+    "id": 7,
+    "domain": "Literature",
+    "source": "किताबें पढ़ने से ज्ञान और शब्दावली में वृद्धि होती है।",
+    "reference": "Reading books increases knowledge and vocabulary."
+  },
+  {
+    "id": 8,
+    "domain": "Daily Conversation",
+    "source": "क्या आप इस प्रश्न को हल करने में मेरी सहायता कर सकते हैं?",
+    "reference": "Can you please help me solve this question?"
+  },
+  {
+    "id": 9,
+    "domain": "Technology",
+    "source": "कंप्यूटर विज्ञान में अभ्यास और लगन सफलता की कुंजी है।",
+    "reference": "Practice and dedication are the keys to success in computer science."
+  },
+  {
+    "id": 10,
+    "domain": "Environment & Science",
+    "source": "सौर ऊर्जा हमारे भविष्य के लिए एक स्वच्छ ऊर्जा स्रोत है।",
+    "reference": "Solar energy is a clean source of energy for our future."
+  }
+]
